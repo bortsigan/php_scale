@@ -17,6 +17,12 @@ class NewsValidation
         $this->validator = $validator;
     }
 
+    /**
+     * Validate the provided data against the specified rules.
+     *
+     * @param array $data The data to be validated.
+     * @throws \Exception If validation fails, an exception is thrown with the error messages.
+     */
     public function validate(array $data)
     {
         $rules = [

@@ -8,9 +8,12 @@ class News extends Model
 {
     protected $table = 'news';  
     protected $fillable = ['title', 'body', 'created_at'];  
-    public $timestamps = false;  
+    public $timestamps = false;
 
 
+    /**
+     * Define a relationship indicating that this model has many to a Comment model
+     */
     public function comments()
     {
         return $this->hasMany(Comment::class);

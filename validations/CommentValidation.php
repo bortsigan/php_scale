@@ -7,7 +7,6 @@ use Illuminate\Translation\ArrayLoader;
 use Illuminate\Translation\Translator;
 use App\Utils\DB;
 use Illuminate\Validation\DatabasePresenceVerifier;
-use Illuminate\Database\Capsule\Manager as Capsule;
 
 class CommentValidation
 {
@@ -25,6 +24,12 @@ class CommentValidation
         $this->validator = $validator;
     }
 
+    /**
+     * Validate the provided data against the specified rules.
+     *
+     * @param array $data The data to be validated.
+     * @throws \Exception If validation fails, an exception is thrown with the first error message.
+     */
     public function validate(array $data)
     {
         $rules = [

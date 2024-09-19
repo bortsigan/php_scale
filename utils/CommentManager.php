@@ -16,8 +16,11 @@ class CommentManager
 	{
 		$this->db = DB::getInstance();
 	}
+
 	/**
-	 * List all comments
+	 * List all comments.
+	 *
+	 * @return \Illuminate\Support\Collection A collection of comments with selected fields and their associated news.
 	 */
 	public function listComments()
 	{
@@ -27,20 +30,26 @@ class CommentManager
 	}
 
 	/**
-	 * List comments for a specific news
+	 * List comments for a specific news.
+	 *
+	 * @param int $newsId The ID of the news for which to list comments.
+	 * @return \Illuminate\Database\Eloquent\Collection A collection of comments for the specified news.
 	 */
 	public function listCommentsForNews($newsId)
 	{
-		// Using Eloquent to fetch comments linked to a specific news
 		return Comment::where('news_id', $newsId)->get();
 	}
 
 	/**
-	 * Add a comment for a specific news
+	 * Add a comment for a specific news.
+	 *
+	 * @param string $body The content of the comment.
+	 * @param int $newsId The ID of the news to which the comment belongs.
+	 * @return int The ID of the newly created comment.
+	 * @throws \Exception If an error occurs during the creation or validation of the comment.
 	 */
 	public function addCommentForNews($body, $newsId)
 	{
-
 		try {
 			$this->db->beginTransaction();
 
@@ -59,14 +68,18 @@ class CommentManager
 			$this->db->commit();
 
 			return $comment->id;
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			$this->db->rollback();
 			throw new \Exception($e->getMessage());
 		}
 	}
 
 	/**
-	 * Deletes a comment
+	 * Delete a comment.
+	 *
+	 * @param int $id The ID of the comment to be deleted.
+	 * @return int The number of records deleted.
+	 * @throws \Exception If an error occurs during the deletion of the comment.
 	 */
 	public function deleteComment($id)
 	{
@@ -78,7 +91,7 @@ class CommentManager
 			$this->db->commit();
 
 			return $delete;
-		} catch(\Exception $e) {
+		} catch (\Exception $e) {
 			$this->db->rollback();
 			throw new \Exception($e->getMessage());
 		}

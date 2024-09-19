@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $table = 'comment';  
-
     protected $fillable = ['body', 'created_at', 'news_id'];  
+    public $timestamps = false;
 
-    public $timestamps = false; 
 
-
+    /**
+     * Define a relationship indicating that this model belongs to a single News model
+     */
     public function news()
     {
         return $this->belongsTo(News::class);

@@ -18,7 +18,9 @@ class NewsManager
 	}
 
 	/**
-	 * List all news using the Eloquent model
+	 * List all news using the Eloquent model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Collection Collection of news with comments.
 	 */
 	public function listNews()
 	{
@@ -26,7 +28,12 @@ class NewsManager
 	}
 
 	/**
-	 * Add a news record using the Eloquent model
+	 * Add a news record using the Eloquent model.
+	 *
+	 * @param string $title The title of the news.
+	 * @param string $body The body of the news.
+	 * @return int The ID of the newly created news record.
+	 * @throws \Exception If an error occurs during the creation or validation of the news record.
 	 */
 	public function addNews($title, $body)
 	{
@@ -55,7 +62,11 @@ class NewsManager
 	}
 
 	/**
-	 * Delete a news record
+	 * Delete a news record.
+	 *
+	 * @param int $id The ID of the news record to be deleted.
+	 * @return int The number of records deleted.
+	 * @throws \Exception If an error occurs during the deletion of the news record.
 	 */
 	public function deleteNews($id)
 	{
