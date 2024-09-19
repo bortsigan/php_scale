@@ -1,0 +1,25 @@
+# Composer dependencies
+/vendor/
+
+# Node.js dependencies
+/node_modules/
+
+# Environment variables
+.env
+
+# IDE and editor files
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.vscode/
+
+# Logs
+*.log
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Laravel specific files
+/storage/*.key
+/storage/debugbar/
